@@ -1,0 +1,43 @@
+{% extends "shop/base.html" %}
+{% load static %}
+{% block title %}
+{% if category %}{{ category.name }}{% else %}Товары{% endif %}
+{% endblock %}
+{% block content %}
+<div id="sidebar">
+<h3>Категория</h3>
+<ul>
+<li {% if not category %}class="selected"{% endif %}>
+<a href="{% url 'shop:product_list' %}">Все</a>
+</li>
+{% for c in categories %}
+<li {% if category.slug == c.slug %}class="selected" {% endif %}>
+<a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+</li>
+{% endfor %}
+</ul>
+</div>
+
+<div class="container" >
+ <div class="row">
+{% for product in products %}
+
+<div class="col-sm-3">
+<div class="card card-block">
+    <a href="{{ product.get_absolute_url }}">
+  <img class="card-img-top" data-src="holder.js/100px180/" alt="100%x180" src="{% if product.image %}{{ product.image.url }}{%else %}{% static 'img/no_image.png' %}{% endif %}" style="height: 300px; width: 100%; display: block;">
+  <div class="card-block">
+    <h4 class="card-title"><a href="{{ product.get_absolute_url }}"></h4>
+    <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+    ₽{{ product.price }}
+
+  </div>
+  </div>
+
+</div>
+
+{% endfor %}
+ </div>
+</div>
+
+{% endblock %}
