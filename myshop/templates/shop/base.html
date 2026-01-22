@@ -29,7 +29,27 @@
           <a class="nav-link" href="http://127.0.0.1:8000/admin/">Админ панель</a>
         </li>
       </ul>
-      <form class="d-flex" role="search">
+
+      {% if user.is_authenticated %}
+  <span>Привет, {{ user.username }}</span>
+
+  <form method="post" action="{% url 'logout' %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Выйти</button>
+  </form>
+
+  {% if user.is_staff %}
+    <a href="/admin/">Админ панель</a>
+  {% endif %}
+{% else %}
+<a href="{% url 'login' %}">Войти</a>
+<a style="margin-left: 12px;" href="{% url 'signup' %}">Регистрация</a>
+
+
+{% endif %}
+
+
+      <form class="d-flex me-3" role="search">
         <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
         <button class="btn btn-outline-success" type="submit">Поиск</button>
       </form>
@@ -59,3 +79,4 @@
 </div>
 </body>
 </html>
+

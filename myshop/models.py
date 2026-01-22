@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100, db_index=True)
     slug = models.SlugField(max_length=100, unique=True)
@@ -34,8 +35,9 @@ class Product(models.Model):
     class Meta:
         ordering = ('name',)
         verbose_name = 'Товар'
-        verbose_name_plural = 'Товары'
-        index_together = (('id', 'slug'), )
+        verbose_name_plural = 'Товары'  
+    indexes = models.Index(fields=('id', 'slug'),),
+        # models.Index(fields=[...]),
 
     def __str__(self):
         return  self.name

@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+
 app_name = 'myshop'
 
 urlpatterns = [
@@ -12,4 +13,6 @@ urlpatterns = [
          name='product_detail'),
 path('oplata.html', views.product_detail,
          name='product_oplata')
+
+
 ]

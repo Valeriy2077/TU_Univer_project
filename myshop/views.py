@@ -26,3 +26,4 @@ def product_detail(request, id, slug):
 
 def about(request):
     return render(request, 'product/about.html')
+
