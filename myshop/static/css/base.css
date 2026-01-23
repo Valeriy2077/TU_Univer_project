@@ -1,10 +1,11 @@
-@import url(http://fonts.googleapis.com/css?family=Ubuntu);
+@import url(https://fonts.googleapis.com/css?family=Ubuntu);
 
 
 body {
     margin:0;
     padding:0;
     font-family:helvetica, sans-serif;
+    
 }
 
 h1, h2, h3, h4, h5 , h6 {
@@ -327,7 +328,28 @@ form div.field {
     margin-bottom:10px;
     padding:6px 12px;
     border:0;
-    background:#efefef;
+  
     color:#666;
     border-radius:4px;
 }
+
+html, body{
+  height: 100%;
+}
+
+body{
+  background-image: url("img/bg.webp");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+#content{
+  background: rgba(255,255,255,0.92);
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 16px;
+}
+
