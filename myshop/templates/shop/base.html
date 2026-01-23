@@ -16,19 +16,18 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Главная</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/">О нас</a>
-        <li class="nav-item">
-          <a class="nav-link" href="/">Каталог товаров</a>
-        </li>
-       <li class="nav-item">
-          <a class="nav-link" href="http://127.0.0.1:8000/admin/">Админ панель</a>
-        </li>
-      </ul>
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+  <li class="nav-item">
+   <a class="nav-link" href="{% url 'shop:product_list' %}">Главная</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'shop:about' %}">О нас</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url 'shop:product_list' %}">Каталог товаров</a>
+  </li>
+</ul>
+
 
       {% if user.is_authenticated %}
   <span>Привет, {{ user.username }}</span>
@@ -43,17 +42,18 @@
   {% endif %}
 {% else %}
 <a href="{% url 'login' %}">Войти</a>
-<a style="margin-left: 12px;" href="{% url 'signup' %}">Регистрация</a>
+<a href="{% url 'accounts:signup' %}">Регистрация</a>
+
+
 
 
 {% endif %}
 
-
-      <form class="d-flex me-3" role="search">
-        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Поиск">
-        <button class="btn btn-outline-success" type="submit">Поиск</button>
-      </form>
-
+      <form class="d-flex" role="search" method="get" action="{% url 'shop:product_list' %}">
+  <input class="form-control me-2" type="search" name="q" placeholder="Поиск"
+         value="{{ request.GET.q|default:'' }}">
+  <button class="btn btn-outline-success" type="submit">Поиск</button>
+</form>
 
         <div class="cart">
 
