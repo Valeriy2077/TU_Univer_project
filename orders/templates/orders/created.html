@@ -1,0 +1,15 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Заказ создан{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+  <div class="alert alert-success">
+    <h4 class="alert-heading mb-2">Заказ оформлен</h4>
+    <div>Номер заказа: <strong>#{{ order.id }}</strong></div>
+  </div>
+
+  <a class="btn btn-primary" href="{% url 'shop:product_list' %}">Продолжить покупки</a>
+</div>
+{% endblock %}
+

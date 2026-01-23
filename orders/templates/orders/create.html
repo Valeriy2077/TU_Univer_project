@@ -1,0 +1,54 @@
+{% extends "shop/base.html" %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+  <h1 class="mb-4">Оформление заказа</h1>
+
+  <div class="row g-4">
+    <div class="col-12 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Данные покупателя</h5>
+
+          <form method="post">
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-primary">Оформить</button>
+            <a href="{% url 'cart:cart_detail' %}" class="btn btn-outline-secondary ms-2">Назад в корзину</a>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Ваша корзина</h5>
+
+          <ul class="list-group list-group-flush">
+            {% for item in cart %}
+              <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="me-3">
+                  <div class="fw-semibold">{{ item.product.name }}</div>
+                  <div class="text-muted small">Кол-во: {{ item.quantity }}</div>
+                </div>
+                <div class="text-nowrap">₽{{ item.total_price }}</div>
+              </li>
+            {% empty %}
+              <li class="list-group-item text-muted">Корзина пустая.</li>
+            {% endfor %}
+          </ul>
+
+          <div class="mt-3 fw-bold">
+            Итого: ₽{{ cart.get_total_price }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

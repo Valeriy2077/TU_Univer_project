@@ -41,26 +41,22 @@
     <a href="/admin/">Админ панель</a>
   {% endif %}
 {% else %}
-<a href="{% url 'login' %}">Войти</a>
+<a class="me-2" href="{% url 'login' %}">Войти</a>
 <a href="{% url 'accounts:signup' %}">Регистрация</a>
 
-
-
-
 {% endif %}
-
-      <form class="d-flex" role="search" method="get" action="{% url 'shop:product_list' %}">
+      <form class="d-flex ms-3" role="search" method="get" action="{% url 'shop:product_list' %}">
   <input class="form-control me-2" type="search" name="q" placeholder="Поиск"
          value="{{ request.GET.q|default:'' }}">
   <button class="btn btn-outline-success" type="submit">Поиск</button>
 </form>
 
-        <div class="cart">
-
+  <div class="cart ms-3">
     {% with total_items=cart|length %}
     {% if cart|length > 0 %}
 
     <a href="{% url 'cart:cart_detail' %}">
+      
     <button class="btn btn-outline-success" type="submit">Корзина</button>
     {{ total_items }} шт , ₽{{ cart.get_total_price }}
     </a>
